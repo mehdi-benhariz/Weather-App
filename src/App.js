@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React ,{useState} from 'react';
+import Weather from "./components/Weather";
+import FooterPage from "./components/FooterPage"
+import Nav from  "./components/Nav";
 
 function App() {
+  const [country, setcountry] = useState("Tunisia");
+  const [city, setcity] = useState("sousse");
+  const [isOn, setisOn] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav setisOn={setisOn} setcity={setcity} setcountry={setcountry}  />
+      {!isOn && <p id="info" > Please choose a country and a city to see the weather info  </p> }
+      {isOn && <Weather country={country} city={city} />}
+      <FooterPage />
     </div>
   );
 }
